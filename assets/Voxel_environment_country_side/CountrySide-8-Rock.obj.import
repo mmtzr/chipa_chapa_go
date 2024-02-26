@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ti3qrgkypk7d"
+path="res://.godot/imported/CountrySide-8-Rock.obj-1302884831399d6dacb50bf098320985.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CountrySide-8-Rock.obj-1302884831399d6dacb50bf098320985.mesh"]
+
+source_file="res://assets/Voxel_environment_country_side/CountrySide-8-Rock.obj"
+dest_files=["res://.godot/imported/CountrySide-8-Rock.obj-1302884831399d6dacb50bf098320985.mesh", "res://.godot/imported/CountrySide-8-Rock.obj-1302884831399d6dacb50bf098320985.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

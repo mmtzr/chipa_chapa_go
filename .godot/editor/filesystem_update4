@@ -1,0 +1,5 @@
+res://scenes/main_isometric_map.tscn
+res://scenes/main.tscn
+res://scenes/player_3d.tscn
+res://scenes/player_3d.gd
+res://scenes/Camera_follow.gd

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cdt22rn6cddon"
+path="res://.godot/imported/CountrySide-2-GroundTile2.obj-696074e989d0876513835350c49e06bf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CountrySide-2-GroundTile2.obj-696074e989d0876513835350c49e06bf.mesh"]
+
+source_file="res://assets/Voxel_environment_country_side/CountrySide-2-GroundTile2.obj"
+dest_files=["res://.godot/imported/CountrySide-2-GroundTile2.obj-696074e989d0876513835350c49e06bf.mesh", "res://.godot/imported/CountrySide-2-GroundTile2.obj-696074e989d0876513835350c49e06bf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

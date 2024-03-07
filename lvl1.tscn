@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d12xna4jneua2"]
+
+[ext_resource type="PackedScene" uid="uid://do4yabq70tvtj" path="res://scenes/player_3d.tscn" id="1_kjbjy"]
+[ext_resource type="MeshLibrary" uid="uid://dp0npt7pv77bk" path="res://Meshes/countryside.meshlib" id="3_8cjlv"]
+
+[sub_resource type="Environment" id="Environment_joerk"]
+
+[node name="World" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.961262, 0.215716, -0.171588, 0, 0.622515, 0.782608, 0.275637, 0.752291, -0.5984, 3.23573, 9.33772, 11.2844)
+light_color = Color(0.545098, 0.623529, 0.780392, 1)
+light_energy = 2.6
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_joerk")
+
+[node name="Player3D" parent="." instance=ExtResource("1_kjbjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58515, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("3_8cjlv")
+cell_size = Vector3(1, 0.365, 1)
+cell_center_y = false
+collision_layer = 4
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(5, 4, 3, 65531, 4, 2, 65531, 65530, 1048579, 5, 65530, 1048578, 15, 65530, 3, 15, 4, 2, 65544, 0, 8, 65546, 1, 4, 65544, 65535, 1441800, 458763, 65529, 5)
+}
+metadata/_editor_floor_ = Vector3(0, 9, 0)

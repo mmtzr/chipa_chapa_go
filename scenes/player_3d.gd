@@ -1,70 +1,53 @@
 extends CharacterBody3D
 
-var gravity = -9.8
-var camera
-var anim_player
-var character
+@export var fall_speed = 10
+@export var walk_speed = 6
+@export var jump_speed = 20
 
-const SPEED = 6
 const ACCELERATION = 3
 const DE_ACCELERATION = 5
 
-func _ready():
-	anim_player = get_node("Animations_Player3D")
-	character = get_node(".")
-	
-func _physics_process(delta):
-	camera = get_node("Marker3D/Camera3D").get_global_transform()
-	var dir = Vector3()
-	var is_moving = false
-	
-	
-	if (Input.is_action_pressed("move_up")):
-		dir += -camera.basis[2]
-		is_moving = true
-	if (Input.is_action_pressed("move_down")):
-		dir += +camera.basis[2]
-		is_moving = true
-	if (Input.is_action_pressed("move_left")):
-		dir += -camera.basis[0]
-		is_moving = true
-	if (Input.is_action_pressed("move_right")):
-		dir += +camera.basis[0]
-		is_moving = true
 
+
+func _ready():
+	$Animations_Player3D.play("IdleD")
+	
+
+func _physics_process(delta):
+	# We create a local variable to store the input direction.
+	var direction = Vector3.ZERO
+	var play_velocity = Vector3.ZERO
+	
+	# We check for each move input and update the direction accordingly.
+	# In 3D, the XZ plane is the ground plane.
+	if Input.is_action_pressed("move_right"):
+		direction.x += 1
+	if Input.is_action_pressed("move_left"):
+		direction.x -= 1
+	if Input.is_action_pressed("move_down"):
+		direction.z += 1
+	if Input.is_action_pressed("move_up"):
+		direction.z -= 1
+
+	# in case of diagonal movement, normalize so it's npt faster
+	if direction != Vector3.ZERO:
+		direction = direction.normalized()
 		
-	dir.y = 0
-	dir = dir.normalized()
-	
-	velocity.y += delta * gravity
-	
-	var hv = velocity
-	hv.y = 0
-	
-	var new_pos = dir * SPEED
-	var accel = DE_ACCELERATION
-	
-	if (dir.dot(hv) > 0):
-		accel = ACCELERATION
-		
-	# interpolate between acceleration and deacceleration
-	hv = hv.lerp(new_pos, accel * delta)
-	
-	velocity.x = hv.x
-	velocity.z = hv.z
-	
+	# Ground Velocity
+	play_velocity.x = lerp(play_velocity.x, direction.x * walk_speed, 1)
+	play_velocity.z = lerp(play_velocity.z, direction.z * walk_speed, 1)
+
+	# Vertical Velocity
+	if not is_on_floor(): # If in the air, fall towards the floor.
+		play_velocity.y = play_velocity.y - (fall_speed * delta)
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		play_velocity.y = jump_speed
+	# Moving the Character
+	velocity = play_velocity
+
 	move_and_slide()
 	
-	# get direction
-	if (is_moving):
-		var angle = atan2(hv.x, hv.z)
-		var char_rot = character.get_rotation()
-		char_rot.y = angle
-		character.set_rotation(char_rot)
+	var blendPosition = Vector2(velocity.normalized().x,-velocity.normalized().z)
+	$IdleWalkRunTree.set("parameters/blend_position",blendPosition)
 	
-	# set animation depending on movement status and rotation
-	# var speed = hv.length() / SPEED # normalized speed
-	
-	get_node("IdleWalkRunTree").set("parameters/blend_position",hv)
-		
-
+	print(blendPosition)

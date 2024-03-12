@@ -1,6 +1,8 @@
-res://scenes/player_3d.tscn
-res://lvl1.tscn
+res://main.gd
 res://scenes/main.tscn
-res://scenes/enemy_3d.tscn
+res://scenes/settings.gd
+res://scenes/settings.tscn
+res://scenes/main.gd
+res://scenes/player_3d.tscn
+res://maps/lvl1.tscn
 res://scenes/meshes_countryside.tscn
-res://scenes/player_3d.gd

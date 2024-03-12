@@ -1,3 +1,7 @@
+Button
+VBoxContainer
+MarginContainer
+Control
 MeshInstance3D
 StaticBody3D
 GridMap
@@ -9,6 +13,3 @@ Marker3D
 CharacterBody3D
 AnimationTree
 Camera3D
-Sprite3D
-AnimationPlayer
-CollisionShape2D
